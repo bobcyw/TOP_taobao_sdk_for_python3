@@ -217,7 +217,7 @@ class RestApi(object):
         #=======================================================================
         # 获取response结果
         #=======================================================================
-        connection = httplib.HTTPConnection(self.__domain, self.__port, timeout)
+        connection = httplib.HTTPConnection(host = self.__domain, port = self.__port, timeout = timeout)
         sys_parameters = {
             P_FORMAT: 'json',
             P_APPKEY: self.__app_key,
