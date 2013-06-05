@@ -65,11 +65,11 @@ def sign(secret, parameters):
 def mixStr(pstr):
     if(isinstance(pstr, str)):
         return pstr
-    elif(isinstance(pstr, unicode)):
-        return pstr.encode('utf-8')
+#    elif(isinstance(pstr, unicode)):
+#        return pstr.encode('utf-8')
     else:
         return str(pstr)
-    
+
 class FileItem(object):
     def __init__(self,filename=None,content=None):
         self.filename = filename
@@ -261,13 +261,13 @@ class RestApi(object):
         #if jsonobj.has_key("error_response"):
         if "error_response" in jsonobj:
             error = TopException()
-            if jsonobj["error_response"].has_key(P_CODE) :
+            if P_CODE in jsonobj["error_response"]:
                 error.errorcode = jsonobj["error_response"][P_CODE]
-            if jsonobj["error_response"].has_key(P_MSG) :
+            if P_MSG in jsonobj["error_response"]:
                 error.message = jsonobj["error_response"][P_MSG]
-            if jsonobj["error_response"].has_key(P_SUB_CODE) :
+            if P_SUB_CODE in jsonobj["error_response"]:
                 error.subcode = jsonobj["error_response"][P_SUB_CODE]
-            if jsonobj["error_response"].has_key(P_SUB_MSG) :
+            if P_SUB_MSG in jsonobj["error_response"]:
                 error.submsg = jsonobj["error_response"][P_SUB_MSG]
             error.application_host = response.getheader("Application-Host", "")
             error.service_host = response.getheader("Location-Host", "")
